@@ -6,7 +6,7 @@ class Command {
        throw Error("Command type required.");
      }
    
-    //  this.value = value;
+     this.value = value;
     //  if (!value) {
     //    throw Error("Value required.");
     //  }

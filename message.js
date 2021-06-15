@@ -3,16 +3,15 @@ class Message {
   constructor(name , commands) {
     
     this.name = name;
-    if (!name) {
-      throw Error("Name required."); 
-    
-    this.commands = commands;
-    if(!commands) {
-      throw Error ("Commands required.")
+    if (!name) {           
+      throw Error("Message name required."); 
     }
+    this.commands = commands;
+    
+    
   }
-  }
-}
+} 
+
 
 
 module.exports = Message;
