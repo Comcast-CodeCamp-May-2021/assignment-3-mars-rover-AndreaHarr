@@ -1,12 +1,12 @@
-class Rover {
-  constructor(position) {
-    this.position = 123;
+     class Rover {
+  constructor(position, mode = 'NORMAL', generatorWatts=110) {
+    this.position = position;
 
 
-    this.mode = 'NORMAL';
+    this.mode = mode;
 
 
-    this.generatorWatts = 110;
+    this.generatorWatts = generatorWatts;
 
   };
 
@@ -15,10 +15,11 @@ class Rover {
   receiveMessage(messageObject) {
 
     let messageName = messageObject.name;
+    let commandObjectArray = messageObject.commands;
     let returnObject = {};
     returnObject ['message'] = messageName;
     let resultsArray = [];
-
+    returnObject['results'] = resultsArray;
    
     
     for (let i = 0; i < commandObjectArray.length; i++) {
@@ -32,9 +33,21 @@ class Rover {
           position: this.position,
           mode: this.mode,
           generatorWatts: this.generatorWatts
+        } 
+      } else if(commandType === "MODE_CHANGE"){
+        let commandValue = 'LOW_POWER';
+        resultsObject['completed'] = false;
+        resultsObject['roverStatus']={
+          position: this.position,
         }
-      }
-      resultsArray.push(commandObject);
+      } else if(commandType === "MODE_CHANGE"){
+        let commandValue = 'NORMAL';
+        resultsObject['completed'] = true;
+        resultsObject['roverStatus']={
+          position: this.position,
+    };// right now you are pushing commandObject into the resultsArray, but there's another object 
+        }  // that you should be adding into your resultsArray
+      resultsArray.push(resultsObject);
     }
 
     // you can use response or outputObject or anything you'd like for the variable name!
@@ -43,7 +56,7 @@ class Rover {
 
     //loop and if/else might go here
 
-    returnObject['results'] = resultsArray;
+    //returnObject['results'] = resultsArray;
     return returnObject;  //make sure to return your NEW OBJECT 
   };
 };
