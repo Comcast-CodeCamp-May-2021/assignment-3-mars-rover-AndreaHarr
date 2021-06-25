@@ -33,6 +33,7 @@ describe("Rover class", function() {
   it ('response returned by receiveMessage contains name of message', function() {
     let commands = [new Command('MODE_CHANGE', 'LOW_POWER'), new Command('STATUS_CHECK')];
     let messageName = new Message('Test message with two commands', commands);
+    console.log(messageName);
     let rover = new Rover(98382);
     let response = rover.receiveMessage(messageName);
     expect(response.message).toEqual('Test message with two commands')
@@ -56,8 +57,10 @@ describe("Rover class", function() {
     let messageName = new Message('Test with STATUS_CHECK commands', commands);
     let rover = new Rover(98382);
     let response = rover.receiveMessage(messageName);
-    expect(response.results[0].roverStatus.position).toEqual(98382);
-    expect(response.results[0].roverStatus.mode).toEqual('NORMAL');
-    expect(response.results[0].roverStatus.generatorWatts).toEqual(110);
+     expect(response.results[0].roverStatus.position).toEqual(98382);
+     expect(response.results[0].roverStatus.mode).toEqual('NORMAL');
+     expect(response.results[0].roverStatus.generatorWatts).toEqual(110);
+     //this console log is just manually testing just to see what resonse.results is shaking to be
+    console.log(response.results)
   });
 });

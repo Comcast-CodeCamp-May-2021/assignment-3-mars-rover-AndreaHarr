@@ -12,7 +12,7 @@
 
 
 
-  receiveMessage(messageObject) {
+  receiveMessage(messageObject){ 
 
     let messageName = messageObject.name;
     let commandObjectArray = messageObject.commands;
@@ -20,14 +20,14 @@
     returnObject ['message'] = messageName;
     let resultsArray = [];
     returnObject['results'] = resultsArray;
-   
+    
     
     for (let i = 0; i < commandObjectArray.length; i++) {
       let commandObject = commandObjectArray[i];
       let commandType = commandObject.commandType;
       let commandValue = commandObject.value;
       let resultsObject = {};
-      if (commandType === "Status_Check") {
+      if (commandType === "STATUS_CHECK") {
         resultsObject['completed'] = true;
         resultsObject['roverStatus'] = {
           position: this.position,
@@ -46,9 +46,9 @@
         resultsObject['roverStatus']={
           position: this.position,
     };// right now you are pushing commandObject into the resultsArray, but there's another object 
-        }  // that you should be adding into your resultsArray
+        };  // that you should be adding into your resultsArray
       resultsArray.push(resultsObject);
-    }
+    };
 
     // you can use response or outputObject or anything you'd like for the variable name!
     //message: // you're responsible for the value of this property! This is what you're testing in your test
@@ -58,6 +58,9 @@
 
     //returnObject['results'] = resultsArray;
     return returnObject;  //make sure to return your NEW OBJECT 
+
+
   };
+
 };
 module.exports = Rover;
